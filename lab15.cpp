@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <fstream>
+#include <string>
 using namespace std;
 
 // Movie vector size
@@ -20,36 +22,48 @@ class Movie {
         void setTitle(string t) { title = t; }
         string getTitle() { return title; }
 
-        // fixed formatting, right aligned values
+        // print title, year, writer in proper formatting
         void Print() {
-            cout << setw(3) << "Red value: " << right << setw(3) << red << " Green value: " << right << setw(3) << green << " Blue value " << right << setw(3) << blue << endl;
+            cout << "Movie: " << title << endl
+            << "\tYear released: " << year << endl 
+            << "\tScreenwriter: " << writer << endl
+            << endl;
         }
 };
 
 int main() {
 
-    // borrowed from Lab 4A
-    srand(time(0));
-    int n;
-    n = rand() % 26 + 25;
-    // vector to store Color objects
-    vector<Color> colorVector;
-    for (int i = 0; i < SIZE; ++i) {
-        // creating temporary Color object, storing values from 0 to 256 in red, green, blue private ints
-        Color tmpColor;
-        tmpColor.setRed(rand() % 255 + 0);
-        tmpColor.setGreen(rand() % 255 + 0);
-        tmpColor.setBlue(rand() % 255 + 0);
-        colorVector.push_back(tmpColor);
-    }
+    // vector to store Movie objects
+    vector<Movie> movieVector;
 
-    // print code from Sample OOP
-    int j = 1;
-    for (auto val : colorVector) {
-        cout << "Color #" << j << ": ";
-        val.Print();
-        ++j;
+    // edited from Sample OOP code
+    ifstream fin ("input.txt");
+    string w;  // holds temporary writer
+    int y;     // holds temporary year
+    string t;  // holds temporary title
+    int i = 0; // temporary index
+
+    if (fin.good()) {
+        while (getline(fin, w)) {
+            fin >> y;
+            fin.ignore();
+            getline(fin, t);
+            Movie tmp;
+            tmp.setWriter(w);
+            tmp.setYear(y);
+            tmp.setTitle(t);
+            movieVector.push_back(tmp);
+            ++i;
+        }
+        fin.close();
     }
-    cout << endl;
+    else
+        cout << "Input file not found.\n";
+
+    // from Lab 14
+    for (auto val : movieVector) {
+        val.Print();
+    }
+   
     return 0;
 }
