@@ -31,9 +31,9 @@ class Color {
         int getBlue() {
             return blue;
         }
-        // forgot to make the print in previous commit
+        // fixed formatting, right aligned values
         void Print() {
-            cout << setw(3) << "Red value: " << red << " Green value: " << green << " Blue value " << blue << endl;
+            cout << setw(3) << "Red value: " << right << setw(3) << red << " Green value: " << right << setw(3) << green << " Blue value " << right << setw(3) << blue << endl;
         }
 };
 
@@ -46,22 +46,21 @@ int main() {
     // vector to store Color objects
     vector<Color> colorVector;
     for (int i = 0; i < SIZE; ++i) {
+        // creating temporary Color object, storing values from 0 to 256 in red, green, blue private ints
         Color tmpColor;
-
+        tmpColor.setRed(rand() % 255 + 0);
+        tmpColor.setGreen(rand() % 255 + 0);
+        tmpColor.setBlue(rand() % 255 + 0);
+        colorVector.push_back(tmpColor);
     }
 
-    // borrowing from Lab 4A for rand
-    /*
-        int n; // initialize new random int n
-   
-    // cout << n; test cout
-
-    // create and push color structs into vector
-    for (int i = 0; i < n; ++i) {
-        Color tmpColor;
-        // create random values from 0 to 256 for temp struct
-        tmpColor.red = rand() % 255 + 0;
-        */
-
+    // print code from Sample OOP
+    int j = 1;
+    for (auto val : colorVector) {
+        cout << "Color #" << j << ": ";
+        val.Print();
+        ++j;
+    }
+    cout << endl;
     return 0;
 }
