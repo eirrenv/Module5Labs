@@ -44,10 +44,10 @@ int main() {
     int i = 0; // temporary index
 
     if (fin.good()) {
-        while (getline(fin, w)) {
-            fin >> y;
+        while (getline(fin, t)) {
+            fin >> y; // get year
             fin.ignore();
-            getline(fin, t);
+            getline(fin, w); // get writer, changed to fit data from lab instructions
             Movie tmp;
             tmp.setWriter(w);
             tmp.setYear(y);
