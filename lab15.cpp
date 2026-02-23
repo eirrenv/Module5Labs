@@ -3,34 +3,23 @@
 #include <vector>
 using namespace std;
 
-// Color vector size
-const int SIZE = 5;
+// Movie vector size
+const int SIZE = 4;
 
-// Color class
-class Color {
-    private: // private parts of class containing protected red, green, blue values
-        int red;
-        int green;
-        int blue;
-    public: // public getters and setters for red, green, blue privates
-        void setRed(int r) {
-            red = r;
-        }
-        int getRed() {
-            return red;
-        }
-        void setGreen(int g) {
-            green = g;
-        }
-        int getGreen() {
-            return green;
-        }
-        void setBlue(int b) {
-            blue = b;
-        }
-        int getBlue() {
-            return blue;
-        }
+// Movie class
+class Movie {
+    private: // private parts of class containing protected writer name, year released, movie title
+        string writer;
+        int year;
+        string title;
+    public: // public getters and setters for privates, cleaner formatting
+        void setWriter(string w) { writer = w; }
+        string getWriter() { return writer; }
+        void setYear(int y) { year = y; }
+        int getYear() { return year; }
+        void setTitle(string t) { title = t; }
+        string getTitle() { return title; }
+
         // fixed formatting, right aligned values
         void Print() {
             cout << setw(3) << "Red value: " << right << setw(3) << red << " Green value: " << right << setw(3) << green << " Blue value " << right << setw(3) << blue << endl;
